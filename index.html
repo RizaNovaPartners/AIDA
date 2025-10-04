@@ -1,48 +1,503 @@
-<!doctype html>
-<html lang="uz">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Global O'zbek — bitta link sahifa"/>
-  <meta property="og:title" content="Global O'zbek" />
-  <meta property="og:description" content="Global O'zbekni tomosha qilish uchun platformalardan tanlang" />
-  <title>Global O'zbek</title>
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--text:#e6eef6}
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Helvetica Neue', Arial;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#071426 0%, #081226 100%);color:var(--text);padding:24px}
-    .wrap{width:100%;max-width:520px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:20px;padding:28px;text-align:center;box-shadow:0 6px 30px rgba(2,6,23,0.6)}
-    .logo{width:88px;height:88px;border-radius:18px;object-fit:cover;margin:0 auto 12px;display:block}
-    h1{margin:6px 0 8px;font-size:22px}
-    p.lead{margin:0 0 18px;color:rgba(230,238,246,0.8)}
-    .links{display:grid;gap:12px}
-    .btn{display:block;padding:14px 16px;border-radius:12px;text-decoration:none;font-weight:600;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);color:var(--text)}
-    .btn:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(6,182,212,0.07)}
-    .meta{margin-top:16px;font-size:13px;color:rgba(230,238,246,0.6)}
-    footer{margin-top:18px;font-size:12px;color:rgba(230,238,246,0.45)}
-    @media (max-width:420px){.card{padding:20px}.logo{width:76px;height:76px}.btn{padding:12px}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIDA | Singer, Songwriter, Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+        
+        /* --- Base Styles (Default: White/Light Mode) --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            /* Min-height ensures content is centered vertically on short screens */
+            min-height: 100vh; 
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Variables for Theming */
+        :root {
+            /* Light Mode (Default/Oq) */
+            --color-bg: #ffffff;
+            --color-text: #1a1a1a;
+            --color-subtext: #6b7280;
+            --color-border: #dbdbdb;
+            --color-accent: #db2777; /* Pink */
+            --color-button-bg: #ffffff;
+            --color-button-text: #1a1a1a;
+            --color-button-border: #dbdbdb;
+            --color-premiere-bg: #f3f4f6; /* Light gray background for premiere */
+        }
+
+        /* --- Dark Mode (Qora) --- */
+        .dark-theme {
+            --color-bg: #1a1a1a;
+            --color-text: #e5e7eb;
+            --color-subtext: #9ca3af;
+            --color-border: #374151;
+            --color-accent: #f472b6; /* Lighter Pink */
+            --color-button-bg: #262626;
+            --color-button-text: #e5e7eb;
+            --color-button-border: #374151;
+            --color-premiere-bg: #262626; /* Darker gray background for premiere */
+        }
+
+        /* --- Color Mode (Rangli) --- */
+        .color-theme {
+            --color-bg: #1f0535; /* Deep Purple */
+            --color-text: #f3e8ff;
+            --color-subtext: #d8b4fe;
+            --color-border: #7e22ce;
+            --color-accent: #ec4899; /* Bright Pink */
+            --color-button-bg: #3c096c;
+            --color-button-text: #f3e8ff;
+            --color-button-border: #9333ea;
+            --color-premiere-bg: #3c096c; /* Deep purple background for premiere */
+        }
+        
+        /* Apply variables to core elements */
+        .container {
+            background-color: var(--color-bg);
+            transition: background-color 0.3s;
+        }
+
+        /* --- Container for Instagram Look (Mobile Focused) --- */
+        .container {
+            /* Max width set to common mobile screen size */
+            max-width: 500px; 
+            padding-top: 20px;
+        }
+        
+        /* --- Profile Styling (Simplified) --- */
+        .profile-name {
+            color: var(--color-text);
+            transition: color 0.3s;
+        }
+
+        /* --- Button Styling (Clean and Bordered) --- */
+        .link-button {
+            background-color: var(--color-button-bg);
+            border: 1px solid var(--color-button-border);
+            color: var(--color-button-text);
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        .link-button:hover {
+            background-color: color-mix(in srgb, var(--color-button-bg) 80%, var(--color-accent) 20%);
+            border-color: var(--color-accent);
+        }
+
+        /* --- Premiere Box Styling --- */
+        .premiere-box {
+            background-color: var(--color-premiere-bg);
+            border: 1px solid var(--color-border); 
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .premiere-progress-bar {
+            height: 6px;
+            background-color: var(--color-border);
+            overflow: hidden;
+            border-radius: 9999px;
+        }
+
+        .premiere-progress-fill {
+            height: 100%;
+            width: 70%; /* Simulated 70% progress */
+            background-color: var(--color-accent);
+            border-radius: 9999px;
+            transition: background-color 0.3s;
+            animation: pulse-fill 4s infinite;
+        }
+        
+        @keyframes pulse-fill {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+
+        .premiere-button {
+            /* Fixed strong style for CTA */
+            background-image: linear-gradient(to right, #f09433, #e80c4e, #c50a58, #8a2be2); 
+            font-weight: 700;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animation for the button's shining effect */
+        .premiere-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-20deg);
+            transition: all 0.7s;
+        }
+
+        .premiere-button:hover:before {
+            left: 150%;
+        }
+
+
+        /* Language Switcher Styling */
+        .lang-switcher-container {
+            position: absolute;
+            top: 20px;
+            /* Use px padding for consistency on small screens */
+            right: 16px; 
+            z-index: 50;
+        }
+        .lang-button {
+            transition: color 0.2s, font-weight 0.2s;
+            cursor: pointer;
+            padding: 4px 6px;
+            color: var(--color-subtext);
+        }
+        .lang-button:hover {
+             color: var(--color-text);
+        }
+        .lang-button.active {
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+        
+        /* Profile Image Border (Classic IG Style) */
+        .profile-pic {
+            border: 3px solid transparent;
+            background-image: linear-gradient(white, white), radial-gradient(circle at top left, #f09433, #e80c4e, #c50a58, #8a2be2);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+        }
+
+        /* Music Note Styling (Reduced size for subtlety) */
+        .music-note {
+            color: #3b82f6; /* Fixed blue for contrast */
+            /* Adjusted font size to be proportional to H1 */
+            font-size: 1rem; 
+            line-height: 1; 
+            display: inline-block;
+        }
+        
+        .icon-color-accent {
+            color: var(--color-accent);
+            transition: color 0.3s;
+        }
+        
+        /* Image Logo Styling */
+        .logo-img {
+             width: 32px;
+             height: 32px;
+             object-fit: contain;
+             /* For Yandex and RizaNova logos, ensure white background is handled */
+             border-radius: 6px; 
+        }
+         /* Spotify is Font Awesome, so it's fine. */
+
+
+    </style>
 </head>
-<body>
-  <div class="wrap">
-    <div class="card">
-      <img class="logo" src="https://via.placeholder.com/400x400.png?text=Global+O%27zbek" alt="Global O'zbek" />
-      <h1>Global O'zbek</h1>
-      <p class="lead">Quyidagi platformalardan tomosha qilishingiz mumkin:</p>
+<body class="p-4 sm:p-8 flex items-start justify-center">
+    
+    <!-- Theme Switcher & Language Switcher Container -->
+    <div class="fixed top-4 right-4 flex space-x-3 z-50">
+        
+        <!-- Language Switcher -->
+        <div class="text-sm border rounded-lg p-1 flex items-center shadow-sm" style="border-color: var(--color-border); background-color: var(--color-button-bg); transition: background-color 0.3s, border-color 0.3s;">
+            <span id="lang-uz" class="lang-button mr-1 active">UZ</span>
+            <span id="lang-ru" class="lang-button mr-1">RU</span>
+            <span id="lang-en" class="lang-button">EN</span>
+        </div>
 
-      <div class="links">
-        <a class="btn" href="https://allplay.uz/uz/movie/69067/global-ozbek" target="_blank" rel="noopener noreferrer">Allplay.uz</a>
-        <a class="btn" href="https://itv.uz/detail/94929/global-ozbek?utm_source=search" target="_blank" rel="noopener noreferrer">ITV.uz</a>
-        <a class="btn" href="https://cinerama.uz/watch/30/48380" target="_blank" rel="noopener noreferrer">Cinerama.uz</a>
-        <a class="btn" href="https://tvcom.uz/movie/102507" target="_blank" rel="noopener noreferrer">TVcom.uz</a>
-        <a class="btn" href="https://kinom.uz/contents/2025-global-ozbek-1169053723290373686" target="_blank" rel="noopener noreferrer">Kinom.uz</a>
-      </div>
-
-      <div class="meta">Instagram bio'ga qo'yib, birgina link orqali barcha platformaga ulaning.</div>
-      <footer>© Global O'zbek — 2025</footer>
+        <!-- Theme Switcher -->
+        <div class="flex items-center space-x-1 border rounded-lg p-1 shadow-sm" style="border-color: var(--color-border); background-color: var(--color-button-bg); transition: background-color 0.3s, border-color 0.3s;">
+            <button id="theme-light" class="w-6 h-6 rounded-full bg-white border border-gray-300 transition-transform duration-100 transform hover:scale-110" title="Oq (Light)"></button>
+            <button id="theme-dark" class="w-6 h-6 rounded-full bg-gray-900 border border-gray-300 transition-transform duration-100 transform hover:scale-110" title="Qora (Dark)"></button>
+            <button id="theme-color" class="w-6 h-6 rounded-full border border-gray-300 transition-transform duration-100 transform hover:scale-110" style="background-image: linear-gradient(45deg, #ec4899, #8b5cf6);" title="Rangli (Color)"></button>
+        </div>
     </div>
-  </div>
+
+
+    <div class="container mx-auto mt-20">
+        
+        <!-- Header & Profile Info -->
+        <header class="text-center pb-8">
+            <div class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4 shadow-md profile-pic">
+                <!-- AIDA Profile Image URL -->
+                <img src="https://yt3.googleusercontent.com/CESKygulCeNQ1mGqPSrqj4T1ymXV63ocuQApZ7Zxlamapb0XHHpqNPUncqZnMTQVaHM5S2Jeuw=s900-c-k-c0x00ffffff-no-rj" alt="AIDA Profile Image" class="w-full h-full object-cover">
+            </div>
+            
+            <h1 class="text-3xl font-bold profile-name mt-4 flex items-center justify-center">
+                A I D A 
+                <span class="music-note ml-2 align-middle">♬</span>
+            </h1>
+            <p class="text-md mt-1 font-medium tracking-wide" data-key="tagline" style="color: var(--color-subtext); transition: color 0.3s;"></p>
+        </header>
+        
+        <!-- PREMIERE ACTION SECTION (Kinematic Progress) -->
+        <section class="premiere-box p-5 rounded-xl text-center mb-8">
+            <div class="flex items-center justify-center mb-3">
+                <i class="fas fa-play-circle text-xl icon-color-accent mr-3"></i>
+                <h2 class="text-xl font-bold" data-key="new_music_header" style="color: var(--color-text); transition: color 0.3s;">LATEST RELEASE</h2>
+            </div>
+            
+            <p class="text-lg font-semibold mb-2" data-key="song_title" style="color: var(--color-text); transition: color 0.3s;">"Sana yenildim (Official Video)"</p>
+            
+            <!-- Simulated Progress Bar (Time till premiere) -->
+            <div class="premiere-progress-bar mb-4">
+                <div class="premiere-progress-fill"></div>
+            </div>
+            <p class="text-sm font-medium mb-4" data-key="premiere_status" style="color: var(--color-subtext); transition: color 0.3s;"></p>
+            
+            <a href="https://youtu.be/6y__irrxul8" target="_blank" class="premiere-button inline-block w-full py-3 rounded-lg text-white">
+                <i class="fab fa-youtube mr-2"></i> <span data-key="watch_trailer">WATCH TRAILER</span>
+            </a>
+        </section>
+
+
+        <!-- Social Networks Section -->
+        <section class="space-y-3 mb-8">
+            <h2 class="text-lg font-bold border-b pb-2" data-key="social_header" style="color: var(--color-text); border-color: var(--color-border); transition: color 0.3s, border-color 0.3s;">Social Networks</h2>
+            
+            <a href="https://t.me/aida_singer" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+                <div class="w-8 h-8 flex items-center justify-center mr-3">
+                    <i class="fab fa-telegram text-xl text-blue-500"></i>
+                </div>
+                <span data-key="telegram">Telegram Channel</span>
+            </a>
+            
+            <a href="https://www.instagram.com/aida_singer_/" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+                <div class="w-8 h-8 flex items-center justify-center mr-3">
+                    <i class="fab fa-instagram text-xl text-pink-600"></i>
+                </div>
+                <span data-key="insta_singer">Instagram (Main)</span>
+            </a>
+            
+            <a href="https://www.instagram.com/aida_producer_/" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+                <div class="w-8 h-8 flex items-center justify-center mr-3">
+                    <i class="fab fa-instagram text-xl text-pink-600"></i>
+                </div>
+                <span data-key="insta_producer">Instagram (Producer)</span>
+            </a>
+            
+            <a href="https://www.instagram.com/aida_officiial_" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+                <div class="w-8 h-8 flex items-center justify-center mr-3">
+                    <i class="fab fa-instagram text-xl text-pink-600"></i>
+                </div>
+                <span data-key="insta_official">Instagram (Official)</span>
+            </a>
+        </section>
+
+
+        <!-- Music Platforms Section -->
+        <section class="space-y-3 mb-8">
+            <h2 class="text-lg font-bold border-b pb-2" data-key="music_header" style="color: var(--color-text); border-color: var(--color-border); transition: color 0.3s, border-color 0.3s;">Music Platforms</h2>
+
+            <a href="https://open.spotify.com/artist/3tnUjU2q7VctgNWVuszjVs" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+                <div class="w-8 h-8 flex items-center justify-center mr-3">
+                    <i class="fab fa-spotify text-xl text-[#1db954]"></i>
+                </div>
+                <span data-key="spotify">Spotify</span>
+            </a>
+
+            <a href="https://music.yandex.uz/artist/9428054" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+                <div class="w-8 h-8 flex items-center justify-center mr-3">
+                    <!-- Yandex Music Logo URL -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Yandex_Music_icon.svg/1200px-Yandex_Music_icon.svg.png" onerror="this.onerror=null; this.src='https://placehold.co/32x32/ffdd33/000?text=YM'" alt="Yandex Music Logo" class="logo-img">
+                </div>
+                <span data-key="yandex">Yandex Music</span>
+            </a>
+            
+            <a href="https://rizanova.uz/person/143" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+                <div class="w-8 h-8 flex items-center justify-center mr-3">
+                    <!-- RizaNova Logo from URL -->
+                    <img src="https://rizanova.uz/image/logo.png" onerror="this.onerror=null; this.src='https://placehold.co/32x32/ffdd33/000?text=RN'" alt="RizaNova Logo" class="logo-img">
+                </div>
+                <span data-key="rizanova">RizaNova</span>
+            </a>
+
+            <a href="https://www.youtube.com/channel/UCQ5sNrm5r68EO9G02ZTLVRg" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+                <div class="w-8 h-8 flex items-center justify-center mr-3">
+                    <i class="fab fa-youtube text-xl text-red-600"></i>
+                </div>
+                <span data-key="youtube">YouTube Channel</span>
+            </a>
+
+        </section>
+        
+        <!-- Creator's Story (Simplified and Elegant) -->
+        <section class="mb-10 pt-0">
+            <h2 class="text-lg font-bold mb-3 border-b pb-2" data-key="story_header" style="color: var(--color-text); border-color: var(--color-border); transition: color 0.3s, border-color 0.3s;">AIDA's Story</h2>
+            <div class="text-sm pl-3 leading-relaxed border-l-2 border-pink-300" style="color: var(--color-subtext); border-color: var(--color-accent); transition: color 0.3s, border-color 0.3s;">
+                <p class="mb-3" data-key="bio_main"></p>
+                <p class="text-base font-medium mt-2" data-key="audience_target"></p>
+            </div>
+        </section>
+        
+        <!-- Contact & Footer -->
+        <div class="text-center mt-4">
+            <p class="text-sm font-semibold mb-2" data-key="events_contact" style="color: var(--color-text); transition: color 0.3s;"></p>
+            <div class="flex justify-center space-x-4 text-lg font-medium">
+                <a href="tel:+998913720002" class="phone-link hover:underline transition-colors" style="color: var(--color-subtext); transition: color 0.3s;">
+                    <i class="fas fa-phone-alt text-sm mr-1 icon-color-accent"></i> +998 91 372 00 02
+                </a>
+                <a href="tel:+998945980002" class="phone-link hover:underline transition-colors" style="color: var(--color-subtext); transition: color 0.3s;">
+                    <i class="fas fa-phone-alt text-sm mr-1 icon-color-accent"></i> +998 94 598 00 02
+                </a>
+            </div>
+        </div>
+
+        <footer class="text-center p-4 text-xs" style="color: var(--color-subtext); transition: color 0.3s;">
+            <span data-key="footer_text">© 2025 AIDA Music. Designed for global reach.</span>
+        </footer>
+    </div>
+    
+    <script>
+        const translations = {
+            en: {
+                tagline: "Singer | Uzbekistan", 
+                location: "", // Removed
+                events_contact: "Events & Concerts Contact:",
+                new_music_header: "LATEST RELEASE",
+                premiere_status: "New music video is live!",
+                watch_trailer: "WATCH VIDEO",
+                story_header: "AIDA's Story",
+                bio_main: "This is the official page for the famous and talented singer, AIDA, serving as a hub for all her materials. Find official music videos, audio tracks, live performances, and occasionally behind-the-scenes footage from the creative process here! The channel is professionally managed with high-quality video and audio and is regularly updated with new content.",
+                audience_target: "Target Audience: Fans of AIDA's work, youth, and those who appreciate modern Uzbek music.",
+                social_header: "Social Networks",
+                music_header: "Music Platforms",
+                youtube: "YouTube Channel",
+                rizanova: "RizaNova",
+                spotify: "Spotify",
+                yandex: "Yandex Music",
+                telegram: "Telegram Channel",
+                insta_singer: "Instagram (Main)",
+                insta_producer: "Instagram (Producer)",
+                insta_official: "Instagram (Official)",
+                footer_text: "© 2025 AIDA Music. Designed for global reach."
+            },
+            uz: {
+                tagline: "Qo'shiqchi | O'zbekiston", 
+                location: "", // Removed
+                events_contact: "To'y va Konsertlar uchun Aloqa:",
+                new_music_header: "YANGI RELIZ",
+                premiere_status: "Yangi klip efirda!",
+                watch_trailer: "VIDEONI KO'RISH",
+                story_header: "AIDA Ijodi",
+                bio_main: "Bu yer O‘zbekistonning mashhur va iste’dodli xonandasi AIDA ijodiga bag‘ishlangan rasmiy sahifa bo‘lib, barcha materiallarga o‘tish joyidir. Rasmiy kliplar, audio treklari, jonli ijrolar va ba’zan ijodiy jarayondan lavhalar shu yerda! Kanal yuqori sifatli video va audio bilan professional darajada yuritiladi, muntazam yangi kontent bilan to‘ldiriladi.",
+                audience_target: "Maqsadli auditoriya: AIDA ijodini sevuvchilar, yoshlar va zamonaviy o‘zbek musiqasini qadrlovchilar.",
+                social_header: "Ijtimoiy Tarmoqlar",
+                music_header: "Musiqa Ilovalari",
+                youtube: "YouTube Kanal",
+                rizanova: "RizaNova",
+                spotify: "Spotify",
+                yandex: "Yandex Music",
+                telegram: "Telegram Kanal",
+                insta_singer: "Instagram (Asosiy)",
+                insta_producer: "Instagram (Prodyuser)",
+                insta_official: "Instagram (Rasmiy)",
+                footer_text: "© 2025 AIDA Music. Global miqyos uchun yaratilgan."
+            },
+            ru: {
+                tagline: "Певица | Узбекистан", 
+                location: "", // Removed
+                events_contact: "Контакт для Мероприятий и Концертов:",
+                new_music_header: "ПОСЛЕДНИЙ РЕЛИЗ",
+                premiere_status: "Новый клип уже доступен!",
+                watch_trailer: "СМОТРЕТЬ ВИДЕО",
+                story_header: "Творчество AIDA",
+                bio_main: "Это официальная страница, посвященная творчеству AIDA, известной и талантливой певицы из Узбекистана, служащая хабом для всех ее материалов. Официальные клипы, аудиодорожки, живые выступления и, иногда, закулисные кадры творческого процесса находятся здесь! Канал профессионально ведется с высоким качеством видео и аудио и регулярно пополняется новым контентом.",
+                audience_target: "Целевая аудитория: Поклонники творчества AIDA, молодежь и ценители современной узбекской музыки.",
+                social_header: "Социальные Сети",
+                music_header: "Музыкальные Платформы",
+                youtube: "YouTube Канал",
+                rizanova: "RizaNova",
+                spotify: "Spotify",
+                yandex: "Яндекс Музыка",
+                telegram: "Telegram Канал",
+                insta_singer: "Instagram (Основной)",
+                insta_producer: "Instagram (Продюсер)",
+                insta_official: "Instagram (Официальный)",
+                footer_text: "© 2025 AIDA Music. Создано для глобальной аудитории."
+            }
+        };
+
+        let currentLang = 'uz'; // Default language
+
+        // --- Theme Management ---
+        const themeMap = {
+            'light': { class: '', accent: '#db2777' }, // Pink accent
+            'dark': { class: 'dark-theme', accent: '#f472b6' }, // Lighter Pink accent
+            'color': { class: 'color-theme', accent: '#ec4899' } // Bright Pink accent
+        };
+        let currentTheme = 'light';
+
+        function applyTheme(themeName) {
+            const theme = themeMap[themeName];
+            document.body.className = theme.class;
+            currentTheme = themeName;
+            
+            // Update profile border gradient based on current theme (to ensure visibility)
+            const profilePic = document.querySelector('.profile-pic');
+            if (themeName === 'color' || themeName === 'dark') {
+                 // Use a fixed light gradient for visibility on dark/color theme
+                profilePic.style.backgroundImage = 'linear-gradient(var(--color-bg), var(--color-bg)), radial-gradient(circle at top left, #a855f7, #ec4899)';
+            } else {
+                // Default IG gradient for light theme
+                profilePic.style.backgroundImage = 'linear-gradient(white, white), radial-gradient(circle at top left, #f09433, #e80c4e, #c50a58, #8a2be2)';
+            }
+        }
+        
+        document.getElementById('theme-light').addEventListener('click', () => applyTheme('light'));
+        document.getElementById('theme-dark').addEventListener('click', () => applyTheme('dark'));
+        document.getElementById('theme-color').addEventListener('click', () => applyTheme('color'));
+        
+        // --- Language Management ---
+        function updateContent() {
+            const currentTranslations = translations[currentLang];
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (currentTranslations[key]) {
+                    // Update innerHTML to handle potential HTML entities like &copy;
+                    element.innerHTML = currentTranslations[key];
+                }
+            });
+            
+            // Update active state of language buttons
+            document.querySelectorAll('.lang-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`lang-${currentLang}`).classList.add('active');
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = currentLang;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('lang-uz').addEventListener('click', () => {
+                currentLang = 'uz';
+                updateContent();
+            });
+            document.getElementById('lang-ru').addEventListener('click', () => {
+                currentLang = 'ru';
+                updateContent();
+            });
+            document.getElementById('lang-en').addEventListener('click', () => {
+                currentLang = 'en';
+                updateContent();
+            });
+
+            // Initial setup
+            updateContent();
+            applyTheme('light'); // Apply light theme initially
+        });
+    </script>
 </body>
 </html>
