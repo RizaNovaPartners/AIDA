@@ -32,6 +32,8 @@
             --color-button-text: #1a1a1a;
             --color-button-border: #dbdbdb;
             --color-premiere-bg: #f3f4f6; /* Light gray background for premiere */
+            --color-halo-start: rgba(255, 192, 203, 0.5); /* Light Pink for Halo */
+            --color-halo-end: rgba(255, 255, 255, 0);
         }
 
         /* --- Dark Mode (Qora) --- */
@@ -45,6 +47,8 @@
             --color-button-text: #e5e7eb;
             --color-button-border: #374151;
             --color-premiere-bg: #262626; /* Darker gray background for premiere */
+            --color-halo-start: rgba(244, 114, 182, 0.15); /* Subtler Pink for Dark Halo */
+            --color-halo-end: rgba(26, 26, 26, 0); /* Fade to dark background color */
         }
         
         /* Apply variables to core elements */
@@ -71,7 +75,7 @@
             background-color: var(--color-button-bg);
             border: 1px solid var(--color-button-border);
             color: var(--color-button-text);
-            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+            transition: all 0.2s ease-in-out;
         }
         .link-button:hover {
             background-color: color-mix(in srgb, var(--color-button-bg) 80%, var(--color-accent) 20%);
@@ -162,7 +166,31 @@
             background-image: linear-gradient(white, white), radial-gradient(circle at top left, #f09433, #e80c4e, #c50a58, #8a2be2);
             background-origin: border-box;
             background-clip: content-box, border-box;
+            /* IMPORTANT: Add position relative for halo background */
+            position: relative;
         }
+        
+        /* --- PROFILE HALO EFFECT --- */
+        .profile-pic::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            /* Use CSS variables for theme switching */
+            background: radial-gradient(circle, var(--color-halo-start) 0%, transparent 70%);
+            z-index: -1; /* Place behind image */
+            /* Subtle animation to suggest life/movement */
+            animation: breathe 5s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
 
         /* Music Note Styling (Reduced size for subtlety) */
         .music-note {
@@ -183,11 +211,45 @@
              width: 32px;
              height: 32px;
              object-fit: contain;
-             /* For Yandex and RizaNova logos, ensure white background is handled */
              border-radius: 6px; 
         }
-         /* Spotify is Font Awesome, so it's fine. */
 
+        /* --- Releases/Horizontal Scroll Styling --- */
+        .releases-container {
+            overflow-x: scroll;
+            white-space: nowrap;
+            padding-bottom: 10px; /* Space for scroll bar */
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox hide scrollbar */
+        }
+        .releases-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari hide scrollbar */
+        }
+        .release-card {
+            display: inline-block;
+            width: 150px;
+            margin-right: 15px;
+            vertical-align: top;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-button-bg);
+            border-radius: 8px;
+        }
+        .release-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .release-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+            opacity: 0.95;
+        }
+        .dark-theme .release-card {
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+        }
 
     </style>
 </head>
@@ -246,6 +308,16 @@
             <a href="https://youtu.be/6y__irrxul8" class="premiere-button inline-block w-full py-3 rounded-lg text-white">
                 <i class="fab fa-youtube mr-2"></i> <span data-key="watch_trailer">WATCH VIDEO</span>
             </a>
+        </section>
+
+
+        <!-- RELEASES SECTION (Horizontal Scroll) -->
+        <section class="mb-8">
+            <h2 class="text-lg font-bold border-b pb-2 mb-4" data-key="releases_header" style="color: var(--color-text); border-color: var(--color-border); transition: color 0.3s, border-color 0.3s;">Releases</h2>
+            
+            <div id="releases-list" class="releases-container flex space-x-4">
+                <!-- Releases dynamically injected here -->
+            </div>
         </section>
 
 
@@ -310,9 +382,6 @@
                 <span data-key="rizanova">RizaNova</span>
             </a>
 
-            <!-- ZVUK REMOVED -->
-
-
         </section>
         
         <!-- Creator's Story (Simplified and Elegant) -->
@@ -353,6 +422,7 @@
                 watch_trailer: "WATCH VIDEO",
                 song_title: "Sana yenildim (Official Video)",
                 story_header: "AIDA's Story",
+                releases_header: "Releases",
                 bio_main: "This is the official page for the famous and talented singer, AIDA, serving as a hub for all her materials. Find official music videos, audio tracks, live performances, and occasionally behind-the-scenes footage from the creative process here! The channel is professionally managed with high-quality video and audio and is regularly updated with new content.",
                 audience_target: "Target Audience: Fans of AIDA's work, youth, and those who appreciate modern Uzbek music.",
                 social_header: "Social Networks",
@@ -374,6 +444,7 @@
                 watch_trailer: "VIDEONI KO'RISH",
                 song_title: "Sana yenildim (Official Video)",
                 story_header: "AIDA Ijodi",
+                releases_header: "Relizlar",
                 bio_main: "Bu yer O‘zbekistonning mashhur va iste’dodli xonandasi AIDA ijodiga bag‘ishlangan rasmiy sahifa bo‘lib, barcha materiallarga o‘tish joyidir. Rasmiy kliplar, audio treklari, jonli ijrolar va ba’zan ijodiy jarayondan lavhalar shu yerda! Kanal yuqori sifatli video va audio bilan professional darajada yuritiladi, muntazam yangi kontent bilan to‘ldiriladi.",
                 audience_target: "Maqsadli auditoriya: AIDA ijodini sevuvchilar, yoshlar va zamonaviy o‘zbek musiqasini qadrlovchilar.",
                 social_header: "Ijtimoiy Tarmoqlar",
@@ -395,6 +466,7 @@
                 watch_trailer: "СМОТРЕТЬ ВИДЕО",
                 song_title: "Sana yenildim (Official Video)",
                 story_header: "Творчество AIDA",
+                releases_header: "Релизы",
                 bio_main: "Это официальная страница, посвященная творчеству AIDA, известной и талантливой певицы из Узбекистана, служащая хабом для всех ее материалов. Официальные клипы, аудиодорожки, живые выступления и, иногда, закулисные кадры творческого процесса находятся здесь! Канал профессионально ведется с высоким качеством видео и аудио и регулярно пополняется новым контентом.",
                 audience_target: "Целевая аудитория: Поклонники творчества AIDA, молодежь и ценители современной узбекской музыки.",
                 social_header: "Социальные Сети",
@@ -403,12 +475,27 @@
                 rizanova: "RizaNova",
                 spotify: "Spotify",
                 yandex: "Яндекс Музыка",
-                zvuk: "Звук",
                 telegram: "Telegram", // Simplified
                 instagram: "Instagram", // Simplified
                 footer_text: "© 2025 AIDA Music. Создано для глобальной аудитории."
             }
         };
+        
+        // --- DINAMIC RELEASE DATA (Manual Update Required) ---
+        // Image URLs are set to look for files in the new 'assets/covers/' folder
+        const releaseData = [
+            // NEW: Sana yenildim added to the start
+            { title: "Sana yenildim", link: "https://www.youtube.com/watch?v=6y__irrxul8", image: "assets/covers/sana-yenildim.jpg", label: "" },
+            // Existing releases follow
+            { title: "Sog'inganda", link: "https://www.youtube.com/watch?v=0Eiz3N72cOI", image: "assets/covers/soginganda.jpg", label: "" },
+            // Removed Koz tegmasin
+            { title: "Дорогой", link: "https://www.youtube.com/watch?v=9QgP5Awd1LA", image: "assets/covers/dorogoy.jpg", label: "" },
+            { title: "Qareken to'ylari", link: "https://www.youtube.com/watch?v=-3SwgSX_51g", image: "assets/covers/qareken_toylari.jpg", label: "" },
+            { title: "До утра", link: "https://www.youtube.com/watch?v=RwqkiDpHDM4", image: "assets/covers/do_utra.jpg", label: "" },
+            { title: "Ishonmay qo'ydim sevgiga", link: "https://www.youtube.com/watch?v=eLkEkaOPb8I", image: "assets/covers/ishonmay.jpg", label: "" },
+        ];
+        // ----------------------------------------------------
+
 
         let currentLang = 'uz'; // Default language
 
@@ -459,6 +546,28 @@
             document.documentElement.lang = currentLang;
         }
 
+        // --- Release Rendering ---
+        function renderReleases() {
+            const releaseListContainer = document.getElementById('releases-list');
+            releaseListContainer.innerHTML = ''; // Clear existing releases
+
+            releaseData.forEach(release => {
+                const card = document.createElement('a');
+                card.href = release.link;
+                card.target = '_blank'; // Opens in new tab
+                card.className = 'release-card rounded-lg shadow-sm';
+                card.innerHTML = `
+                    <img src="${release.image}" alt="${release.title} cover" class="release-img" onerror="this.onerror=null; this.src='https://placehold.co/150x150/000/fff?text=AIDA';">
+                    <div class="p-2 whitespace-normal">
+                        <p class="text-sm font-medium leading-tight" style="color: var(--color-text);">${release.title}</p>
+                        <!-- Label removed as requested -->
+                    </div>
+                `;
+                releaseListContainer.appendChild(card);
+            });
+        }
+
+
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('lang-uz').addEventListener('click', () => {
                 currentLang = 'uz';
@@ -493,6 +602,7 @@
             });
 
             // Initial setup
+            renderReleases();
             updateContent();
             applyTheme('light'); // Apply light theme initially
         });
