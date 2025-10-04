@@ -46,19 +46,6 @@
             --color-button-border: #374151;
             --color-premiere-bg: #262626; /* Darker gray background for premiere */
         }
-
-        /* --- Color Mode (Rangli) --- */
-        .color-theme {
-            --color-bg: #1f0535; /* Deep Purple */
-            --color-text: #f3e8ff;
-            --color-subtext: #d8b4fe;
-            --color-border: #7e22ce;
-            --color-accent: #ec4899; /* Bright Pink */
-            --color-button-bg: #3c096c;
-            --color-button-text: #f3e8ff;
-            --color-button-border: #9333ea;
-            --color-premiere-bg: #3c096c; /* Deep purple background for premiere */
-        }
         
         /* Apply variables to core elements */
         .container {
@@ -216,11 +203,10 @@
             <span id="lang-en" class="lang-button">EN</span>
         </div>
 
-        <!-- Theme Switcher -->
+        <!-- Theme Switcher (Only Light and Dark left) -->
         <div class="flex items-center space-x-1 border rounded-lg p-1 shadow-sm" style="border-color: var(--color-border); background-color: var(--color-button-bg); transition: background-color 0.3s, border-color 0.3s;">
             <button id="theme-light" class="w-6 h-6 rounded-full bg-white border border-gray-300 transition-transform duration-100 transform hover:scale-110" title="Oq (Light)"></button>
             <button id="theme-dark" class="w-6 h-6 rounded-full bg-gray-900 border border-gray-300 transition-transform duration-100 transform hover:scale-110" title="Qora (Dark)"></button>
-            <button id="theme-color" class="w-6 h-6 rounded-full border border-gray-300 transition-transform duration-100 transform hover:scale-110" style="background-image: linear-gradient(45deg, #ec4899, #8b5cf6);" title="Rangli (Color)"></button>
         </div>
     </div>
 
@@ -256,8 +242,9 @@
             </div>
             <p class="text-sm font-medium mb-4" data-key="premiere_status" style="color: var(--color-subtext); transition: color 0.3s;"></p>
             
-            <a href="https://youtu.be/6y__irrxul8" target="_blank" class="premiere-button inline-block w-full py-3 rounded-lg text-white">
-                <i class="fab fa-youtube mr-2"></i> <span data-key="watch_trailer">WATCH TRAILER</span>
+            <!-- Removed target="_blank" -->
+            <a href="https://youtu.be/6y__irrxul8" class="premiere-button inline-block w-full py-3 rounded-lg text-white">
+                <i class="fab fa-youtube mr-2"></i> <span data-key="watch_trailer">WATCH VIDEO</span>
             </a>
         </section>
 
@@ -266,48 +253,47 @@
         <section class="space-y-3 mb-8">
             <h2 class="text-lg font-bold border-b pb-2" data-key="social_header" style="color: var(--color-text); border-color: var(--color-border); transition: color 0.3s, border-color 0.3s;">Social Networks</h2>
             
-            <a href="https://t.me/aida_singer" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+            <!-- Telegram link uses deep linking logic -->
+            <a href="https://t.me/aida_singer" data-app-url="tg://resolve?domain=aida_singer" class="link-button flex w-full py-3 rounded-lg items-center link-app">
                 <div class="w-8 h-8 flex items-center justify-center mr-3">
                     <i class="fab fa-telegram text-xl text-blue-500"></i>
                 </div>
-                <span data-key="telegram">Telegram Channel</span>
+                <span data-key="telegram">Telegram</span>
             </a>
             
-            <a href="https://www.instagram.com/aida_singer_/" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+            <!-- ONLY ONE INSTAGRAM PROFILE LEFT -->
+            <a href="https://www.instagram.com/aida_singer_/" data-app-url="instagram://user?username=aida_singer_" class="link-button flex w-full py-3 rounded-lg items-center link-app">
                 <div class="w-8 h-8 flex items-center justify-center mr-3">
                     <i class="fab fa-instagram text-xl text-pink-600"></i>
                 </div>
-                <span data-key="insta_singer">Instagram (Main)</span>
+                <span data-key="instagram">Instagram</span>
             </a>
             
-            <a href="https://www.instagram.com/aida_producer_/" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
-                <div class="w-8 h-8 flex items-center justify-center mr-3">
-                    <i class="fab fa-instagram text-xl text-pink-600"></i>
-                </div>
-                <span data-key="insta_producer">Instagram (Producer)</span>
-            </a>
-            
-            <a href="https://www.instagram.com/aida_officiial_" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
-                <div class="w-8 h-8 flex items-center justify-center mr-3">
-                    <i class="fab fa-instagram text-xl text-pink-600"></i>
-                </div>
-                <span data-key="insta_official">Instagram (Official)</span>
-            </a>
         </section>
 
 
         <!-- Music Platforms Section -->
         <section class="space-y-3 mb-8">
             <h2 class="text-lg font-bold border-b pb-2" data-key="music_header" style="color: var(--color-text); border-color: var(--color-border); transition: color 0.3s, border-color 0.3s;">Music Platforms</h2>
-
-            <a href="https://open.spotify.com/artist/3tnUjU2q7VctgNWVuszjVs" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+            
+            <!-- --- Order: YouTube --- -->
+            <a href="https://www.youtube.com/channel/UCQ5sNrm5r68EO9G02ZTLVRg" data-app-url="vnd.youtube://channel/UCQ5sNrm5r68EO9G02ZTLVRg" class="link-button flex w-full py-3 rounded-lg items-center link-app">
+                <div class="w-8 h-8 flex items-center justify-center mr-3">
+                    <i class="fab fa-youtube text-xl text-red-600"></i>
+                </div>
+                <span data-key="youtube">YouTube</span>
+            </a>
+            
+            <!-- --- Order: Spotify --- -->
+            <a href="https://open.spotify.com/artist/3tnUjU2q7VctgNWVuszjVs" data-app-url="spotify://artist/3tnUjU2q7VctgNWVuszjVs" class="link-button flex w-full py-3 rounded-lg items-center link-app">
                 <div class="w-8 h-8 flex items-center justify-center mr-3">
                     <i class="fab fa-spotify text-xl text-[#1db954]"></i>
                 </div>
                 <span data-key="spotify">Spotify</span>
             </a>
 
-            <a href="https://music.yandex.uz/artist/9428054" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+            <!-- --- Order: Yandex Music --- -->
+            <a href="https://music.yandex.uz/artist/9428054" class="link-button flex w-full py-3 rounded-lg items-center">
                 <div class="w-8 h-8 flex items-center justify-center mr-3">
                     <!-- Yandex Music Logo URL -->
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Yandex_Music_icon.svg/1200px-Yandex_Music_icon.svg.png" onerror="this.onerror=null; this.src='https://placehold.co/32x32/ffdd33/000?text=YM'" alt="Yandex Music Logo" class="logo-img">
@@ -315,20 +301,24 @@
                 <span data-key="yandex">Yandex Music</span>
             </a>
             
-            <a href="https://rizanova.uz/person/143" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+            <!-- --- Order: RizaNova --- -->
+            <a href="https://rizanova.uz/person/143" class="link-button flex w-full py-3 rounded-lg items-center">
                 <div class="w-8 h-8 flex items-center justify-center mr-3">
                     <!-- RizaNova Logo from URL -->
                     <img src="https://rizanova.uz/image/logo.png" onerror="this.onerror=null; this.src='https://placehold.co/32x32/ffdd33/000?text=RN'" alt="RizaNova Logo" class="logo-img">
                 </div>
                 <span data-key="rizanova">RizaNova</span>
             </a>
-
-            <a href="https://www.youtube.com/channel/UCQ5sNrm5r68EO9G02ZTLVRg" target="_blank" class="link-button flex w-full py-3 rounded-lg items-center">
+            
+            <!-- --- Order: Zvuk --- -->
+            <a href="https://zvuk.com/artist/211191024" class="link-button flex w-full py-3 rounded-lg items-center">
                 <div class="w-8 h-8 flex items-center justify-center mr-3">
-                    <i class="fab fa-youtube text-xl text-red-600"></i>
+                    <!-- Zvuk Logo -->
+                    <img src="logos/zvuk.png" onerror="this.onerror=null; this.src='https://placehold.co/32x32/1a1a1a/fff?text=ZV'" alt="Zvuk Logo" class="logo-img">
                 </div>
-                <span data-key="youtube">YouTube Channel</span>
+                <span data-key="zvuk">Zvuk</span>
             </a>
+
 
         </section>
         
@@ -368,19 +358,19 @@
                 new_music_header: "LATEST RELEASE",
                 premiere_status: "New music video is live!",
                 watch_trailer: "WATCH VIDEO",
+                song_title: "Sana yenildim (Official Video)",
                 story_header: "AIDA's Story",
                 bio_main: "This is the official page for the famous and talented singer, AIDA, serving as a hub for all her materials. Find official music videos, audio tracks, live performances, and occasionally behind-the-scenes footage from the creative process here! The channel is professionally managed with high-quality video and audio and is regularly updated with new content.",
                 audience_target: "Target Audience: Fans of AIDA's work, youth, and those who appreciate modern Uzbek music.",
                 social_header: "Social Networks",
                 music_header: "Music Platforms",
-                youtube: "YouTube Channel",
+                youtube: "YouTube", // Simplified
                 rizanova: "RizaNova",
                 spotify: "Spotify",
                 yandex: "Yandex Music",
-                telegram: "Telegram Channel",
-                insta_singer: "Instagram (Main)",
-                insta_producer: "Instagram (Producer)",
-                insta_official: "Instagram (Official)",
+                zvuk: "Zvuk",
+                telegram: "Telegram", // Simplified
+                instagram: "Instagram", // Simplified
                 footer_text: "© 2025 AIDA Music. Designed for global reach."
             },
             uz: {
@@ -390,19 +380,19 @@
                 new_music_header: "YANGI RELIZ",
                 premiere_status: "Yangi klip efirda!",
                 watch_trailer: "VIDEONI KO'RISH",
+                song_title: "Sana yenildim (Official Video)",
                 story_header: "AIDA Ijodi",
                 bio_main: "Bu yer O‘zbekistonning mashhur va iste’dodli xonandasi AIDA ijodiga bag‘ishlangan rasmiy sahifa bo‘lib, barcha materiallarga o‘tish joyidir. Rasmiy kliplar, audio treklari, jonli ijrolar va ba’zan ijodiy jarayondan lavhalar shu yerda! Kanal yuqori sifatli video va audio bilan professional darajada yuritiladi, muntazam yangi kontent bilan to‘ldiriladi.",
                 audience_target: "Maqsadli auditoriya: AIDA ijodini sevuvchilar, yoshlar va zamonaviy o‘zbek musiqasini qadrlovchilar.",
                 social_header: "Ijtimoiy Tarmoqlar",
                 music_header: "Musiqa Ilovalari",
-                youtube: "YouTube Kanal",
+                youtube: "YouTube", // Simplified
                 rizanova: "RizaNova",
                 spotify: "Spotify",
                 yandex: "Yandex Music",
-                telegram: "Telegram Kanal",
-                insta_singer: "Instagram (Asosiy)",
-                insta_producer: "Instagram (Prodyuser)",
-                insta_official: "Instagram (Rasmiy)",
+                zvuk: "Zvuk",
+                telegram: "Telegram", // Simplified
+                instagram: "Instagram", // Simplified
                 footer_text: "© 2025 AIDA Music. Global miqyos uchun yaratilgan."
             },
             ru: {
@@ -412,19 +402,19 @@
                 new_music_header: "ПОСЛЕДНИЙ РЕЛИЗ",
                 premiere_status: "Новый клип уже доступен!",
                 watch_trailer: "СМОТРЕТЬ ВИДЕО",
+                song_title: "Sana yenildim (Official Video)",
                 story_header: "Творчество AIDA",
                 bio_main: "Это официальная страница, посвященная творчеству AIDA, известной и талантливой певицы из Узбекистана, служащая хабом для всех ее материалов. Официальные клипы, аудиодорожки, живые выступления и, иногда, закулисные кадры творческого процесса находятся здесь! Канал профессионально ведется с высоким качеством видео и аудио и регулярно пополняется новым контентом.",
                 audience_target: "Целевая аудитория: Поклонники творчества AIDA, молодежь и ценители современной узбекской музыки.",
                 social_header: "Социальные Сети",
                 music_header: "Музыкальные Платформы",
-                youtube: "YouTube Канал",
+                youtube: "YouTube", // Simplified
                 rizanova: "RizaNova",
                 spotify: "Spotify",
                 yandex: "Яндекс Музыка",
-                telegram: "Telegram Канал",
-                insta_singer: "Instagram (Основной)",
-                insta_producer: "Instagram (Продюсер)",
-                insta_official: "Instagram (Официальный)",
+                zvuk: "Звук",
+                telegram: "Telegram", // Simplified
+                instagram: "Instagram", // Simplified
                 footer_text: "© 2025 AIDA Music. Создано для глобальной аудитории."
             }
         };
@@ -435,7 +425,6 @@
         const themeMap = {
             'light': { class: '', accent: '#db2777' }, // Pink accent
             'dark': { class: 'dark-theme', accent: '#f472b6' }, // Lighter Pink accent
-            'color': { class: 'color-theme', accent: '#ec4899' } // Bright Pink accent
         };
         let currentTheme = 'light';
 
@@ -446,7 +435,7 @@
             
             // Update profile border gradient based on current theme (to ensure visibility)
             const profilePic = document.querySelector('.profile-pic');
-            if (themeName === 'color' || themeName === 'dark') {
+            if (themeName === 'dark') {
                  // Use a fixed light gradient for visibility on dark/color theme
                 profilePic.style.backgroundImage = 'linear-gradient(var(--color-bg), var(--color-bg)), radial-gradient(circle at top left, #a855f7, #ec4899)';
             } else {
@@ -457,7 +446,6 @@
         
         document.getElementById('theme-light').addEventListener('click', () => applyTheme('light'));
         document.getElementById('theme-dark').addEventListener('click', () => applyTheme('dark'));
-        document.getElementById('theme-color').addEventListener('click', () => applyTheme('color'));
         
         // --- Language Management ---
         function updateContent() {
@@ -492,6 +480,25 @@
             document.getElementById('lang-en').addEventListener('click', () => {
                 currentLang = 'en';
                 updateContent();
+            });
+
+            // --- Deep Linking Logic ---
+            document.querySelectorAll('.link-app').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const appUrl = this.getAttribute('data-app-url');
+                    
+                    if (appUrl) {
+                        e.preventDefault();
+                        
+                        // Try to open the app directly
+                        window.location.href = appUrl;
+
+                        // Fallback to the web URL after a delay (if app didn't open)
+                        setTimeout(() => {
+                            window.location.href = this.href;
+                        }, 500); 
+                    }
+                });
             });
 
             // Initial setup
